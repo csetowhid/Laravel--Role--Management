@@ -40,3 +40,10 @@ class User extends Authenticatable
     // ...
 }
 ```
+
+## Step: 4 Make Migration Seeder
+
+```
+ php artisan make:seeder RolePermissionSeeder
+ php artisan make:seeder UserTableSeeder
+```
