@@ -1,4 +1,4 @@
-# Laravel Multi Role Management With Spatie in Laravel 8
+# Laravel 8 Multi Role Management With Spatie
 
 ## Step: 1 Create a New Laravel 8 Application
 `composer create-project laravel/laravel laravel-role-management`
@@ -29,3 +29,14 @@ Publish The Package
 php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
 ```
 
+## Step: 3 Add the necessary trait to your User model
+```
+use Spatie\Permission\Traits\HasRoles;
+
+class User extends Authenticatable
+{
+    use HasRoles;
+
+    // ...
+}
+```
