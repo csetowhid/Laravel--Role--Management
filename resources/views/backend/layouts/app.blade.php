@@ -207,7 +207,8 @@
 <script src="{{asset('backend/js/widgets/pie-chart/pie-charts-nvd3.min.js')}}"></script>
 <script src="{{asset('backend/js/widgets/table/table.min.js')}}"></script>
 <script src="{{asset('backend/js/widgets/todo/todo.min.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- endinject -->
-
+@yield('js')
 </body>
 </html>

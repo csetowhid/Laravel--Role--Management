@@ -15,9 +15,22 @@
                         <input class="mdl-textfield__input" type="text" id="floating-first-name" name="name">
                         <label class="mdl-textfield__label" for="floating-first-name">Role Name</label>
                     </div>
+               
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
                         <h3 class="mdl-card__title-text" style="color: white;">Permission</h3>
+
+                        <input type="checkbox" id="checkall" value="1">
+                        <label style="margin-top: 5px;">All</label>
+                        <hr>
                         @if(!empty($permissions))
+                        {{-- @foreach($permissiongroups as $group)
+                        <br>
+                        <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone form__article">
+                            <input type="checkbox" style="margin: 5px;" value="{{$group->group_name}}">
+                            <label style="margin-top: 5px;">{{$group->group_name}}</label>
+                        </div>
+                
+                        @endforeach --}}
                         @foreach($permissions as $permission)
                         <br>
                         <input type="checkbox" name="permissions[]" style="margin: 5px;" value="{{$permission->name}}">
@@ -33,4 +46,17 @@
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+<script>
+    $("#checkall").click(function(){
+        if($(this).is(':checked')){
+                 // check all the checkbox
+                 $('input[type=checkbox]').prop('checked', true);
+             }else{
+                 // un check all the checkbox
+                 $('input[type=checkbox]').prop('checked', false);
+             }
+    });
+</script>
 @endsection
