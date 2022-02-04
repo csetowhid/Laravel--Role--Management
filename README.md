@@ -47,3 +47,87 @@ class User extends Authenticatable
  php artisan make:seeder RolePermissionSeeder
  php artisan make:seeder UserTableSeeder
 ```
+
+Add Some Code In The Seeder File
+
+<b>UserTableSeeder</b>
+```
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+public function run()
+    {
+        User::create([
+            'name' => 'User',
+            'email' => 'user@gmail.com',
+            'password' => Hash::make("12345678"),
+        ]);
+    }
+```
+<b>RolePermissionSeeder</b>
+```
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
+public function run()
+    {
+        // Create Roles
+        $roleSuperAdmin = Role::create(['name' => 'superadmin']);
+        $roleAdmin = Role::create(['name' => 'admin']);
+        $roleEditor = Role::create(['name' => 'editor']);
+        $roleUser = Role::create(['name' => 'user']);
+
+
+        // Permission List as array
+        $permissions = [
+
+            // Dashboard
+            'dashboard.view',
+
+            // Blog Permissions
+            'blog.create',
+            'blog.view',
+            'blog.edit',
+            'blog.delete',
+            'blog.approve',
+
+            // Admin Permissions
+            'admin.create',
+            'admin.view',
+            'admin.edit',
+            'admin.delete',
+            'admin.approve',
+
+            // Role Permissions
+            'role.create',
+            'role.view',
+            'role.edit',
+            'role.delete',
+            'role.approve',
+
+            // Profile Permissions
+            'profile.view',
+            'profile.edit'
+        ];
+
+        // Create and Assign Permissions
+
+        for ($i = 0; $i < count($permissions); $i++) {
+            // Create Permission
+            $permission = Permission::create(['name' => $permissions[$i]]);
+            $roleSuperAdmin->givePermissionTo($permission);
+            $permission->assignRole($roleSuperAdmin);
+        }
+    }
+```
+
+Add This Seeders In <b>DatabaseSeeder</b>
+
+
+```
+public function run()
+    {
+        $this->call(UserTableSeeder::class);
+        $this->call(RolePermissionSeeder::class);
+    }
+```
