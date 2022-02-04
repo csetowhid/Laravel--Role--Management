@@ -133,4 +133,45 @@ public function run()
 ```
 ## Step: 5 Template Layouting
 
-## Step: 6 
+## Step: 6 Make Resource Roles Controller 
+```
+php artisan make:controller Backend/RolesController --resource
+```
+Add This Code in <b>RolesController</b>
+```
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
+
+public function index()
+    {
+        $data['roles'] = Role::all();
+        return view('backend.roles.index',$data);
+    }
+
+public function create()
+    {
+        $data['permissions'] = Permission::all();
+        return view('backend.roles.create',$data);
+    }
+
+public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $role = Role::create([
+            'name' => $request->name
+        ]);
+
+        $permissions = $request->permissions;
+
+        if (!empty($permissions)) {
+            $role->syncPermissions($permissions);
+            return redirect()->route('roles.index');
+        }
+
+        return back();
+    }
+```

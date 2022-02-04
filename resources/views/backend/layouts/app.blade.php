@@ -18,7 +18,6 @@
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#3372DF">
 
-
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,100,700,900' rel='stylesheet'
           type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -142,9 +141,9 @@
                                 </a>
                             </div>
                         </div>
-                        <a class="mdl-navigation__link" href="ui-components.html">
+                        <a class="mdl-navigation__link" href="{{route('roles.index')}}">
                             <i class="material-icons">developer_board</i>
-                            Components
+                            Roles
                         </a>
                         <a class="mdl-navigation__link" href="forms.html">
                             <i class="material-icons" role="presentation">person</i>

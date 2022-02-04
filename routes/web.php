@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\RolesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,7 @@ Route::get('/dashboard', function () {
 
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/',[DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::resource('roles',RolesController::class);
 });
 
 require __DIR__.'/auth.php';
