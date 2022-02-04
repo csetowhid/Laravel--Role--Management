@@ -131,3 +131,6 @@ public function run()
         $this->call(RolePermissionSeeder::class);
     }
 ```
+## Step: 5 Template Layouting
+
+## Step: 6 
